@@ -10,7 +10,7 @@ soup = BeautifulSoup(sitemap, "xml")
 
 urls = soup.find_all("loc")
 
-results = {}  # Инициализация пустого словаря для хранения результатов проверки ссылок
+results = {}  # Initialize empty dictionary to store link checking results
 
 for url in urls:
     url = url.text
@@ -18,7 +18,7 @@ for url in urls:
     status_code = response.status_code
     results[url] = status_code
 
-# Открытие файла для записи результатов
+# Open file to write results
 with open("results.txt", "w") as file:
     for url, status_code in results.items():
         file.write(f"URL: {url}, Status Code: {status_code}\n")
