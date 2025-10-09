@@ -87,7 +87,7 @@ This will create .webp images in _/src/img_ folder whose max size would be 512px
 
 -   [pngcrush](https://pmt.sourceforge.io/pngcrush/) - an optimizer for PNG files
 
--   for non-macOS operating systems:
+- for non-macOS operating systems:
 
     -   [magick](https://imagemagick.org/script/download.php) - command line tool from ImageMagick
         > on macOS the script uses [sips](https://ss64.com/mac/sips.html) - the macOS command line tool
