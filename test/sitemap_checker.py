@@ -10,7 +10,7 @@ soup = BeautifulSoup(sitemap, "xml")
 
 urls = soup.find_all("loc")
 
-results = {}  # Initialize empty dictionary to store link checking results
+results = {}   # Initialize empty dictionary to store link checking results
 
 for url in urls:
     url = url.text
