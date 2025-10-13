@@ -30,6 +30,10 @@ interface CallToActionProps {
     imgH?: number;
     /** Image position relative to content */
     imgPosition?: "left" | "right";
+    /** Custom CSS class for container */
+    className?: string;
+    /** Loading state for async content */
+    loading?: boolean;
 }
 
 const CallToAction = memo(function CallToAction(props: CallToActionProps): React.ReactElement {
@@ -46,7 +50,9 @@ const CallToAction = memo(function CallToAction(props: CallToActionProps): React
         imgH = 585, 
         imgPosition = "right",
         appId, 
-        appDownloadTitle 
+        appDownloadTitle,
+        className = "",
+        loading = false
     } = props;
 
     // Determine column order based on image position
@@ -54,9 +60,22 @@ const CallToAction = memo(function CallToAction(props: CallToActionProps): React
     const contentOrderClass = isImageLeft ? "order-lg-2" : "order-lg-1";
     const imageOrderClass = isImageLeft ? "order-lg-1" : "order-lg-2";
 
+    // Loading state
+    if (loading) {
+        return (
+            <section className={`container my-4 ${className}`} style={{ backgroundColor: bgColor }}>
+                <div className="d-flex justify-content-center align-items-center" style={{ minHeight: "300px" }}>
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section 
-            className="container my-4" 
+            className={`container my-4 ${className}`}
             style={{ backgroundColor: bgColor }}
             aria-labelledby="cta-title"
         >
@@ -103,7 +122,7 @@ const CallToAction = memo(function CallToAction(props: CallToActionProps): React
                             h={imgH}
                             w={imgW}
                             cls="img-fluid mx-auto d-block"
-                            alt={imgAlt || _("Image for") + " " + _(title)}
+                            alt={imgAlt || `${_("Image for")} ${_(title)}`}
                         />
                     </div>
                 )}
