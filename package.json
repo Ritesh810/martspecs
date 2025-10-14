@@ -1,5 +1,6 @@
+
 {
-    "name": "ms-client",
+    "name": "martspecs",
     "homepage": "https://protyagov.github.io/martspec/",
     "version": "1.0.0",
     "private": true,
