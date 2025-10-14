@@ -65,7 +65,7 @@ type SectorModelId = number;
 
 const useSelected = ([selectedCollection, setResult]: [
     SectorModel["id"][],
-    React.Dispatch<React.SetStateAction<TestResult>>,
+    React.Dispatch<React.SetStateAction<TestResult<TestResultModel> | null>>,
 ]) => {
     const sc = selectedCollection;
 
@@ -344,7 +344,7 @@ export default function ColorTest() {
 
     const [userSelectionCollection, setUserSelectionCollection] = React.useState<SectorModelId[]>([]);
 
-    const [testResult, setTestResult] = React.useState<TestResult | null>(null);
+    const [testResult, setTestResult] = React.useState<TestResult<TestResultModel> | null>(null);
 
     const [displayedResult, setDisplayedResult] = React.useState<(typeof RESULT_GROUPS)[number]>("E");
 

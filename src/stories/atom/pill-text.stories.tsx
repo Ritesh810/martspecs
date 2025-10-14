@@ -1,9 +1,9 @@
 import React from "react";
 import _ from "@/i18n/locale";
-import type { StoryDefault } from "@ladle/react";
+import type { Story, StoryDefault } from "@ladle/react";
 import PillText from "@/atomic/atom/pill-text";
 
-const CenterDecorator = (Story: () => JSX.Element) => (
+const CenterDecorator = (Component: React.FC) => (
     <div
         style={{
             display: "flex",
@@ -12,19 +12,21 @@ const CenterDecorator = (Story: () => JSX.Element) => (
             height: "100vh",
         }}
     >
-        <Story />
+        <Component />
     </div>
 );
 
 export default {
     title: "Atom/PillText",
-    decorators: [CenterDecorator],
 } satisfies StoryDefault;
 
-export const open = () => (
+export const open: Story = () => (
     <PillText text={_("VACANCY.VACANCY_STATUS.OPEN")} backgroundColor="#E5F4D9" textColor="#219B3F" />
 );
 
-export const closed = () => (
+export const closed: Story = () => (
     <PillText text={_("VACANCY.VACANCY_STATUS.CLOSED")} backgroundColor="#FFF3E9" textColor="#FD7E14" />
 );
+
+open.decorators = [CenterDecorator];
+closed.decorators = [CenterDecorator];

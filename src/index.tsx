@@ -9,5 +9,10 @@ import eb from "@/event-bus";
 const root = document.getElementById("root");
 if (!root) throw new Error(`html element with id:"root" was not found`);
 
-eb.addEvent("LANG_CHANGED", (lang: string) => createRoot(root).render(<App />));
+const rootElement = createRoot(root);
+
+eb.addEvent("LANG_CHANGED", (lang: string) => rootElement.render(<App />));
 Locale.init();
+
+// Initial render
+rootElement.render(<App />);
