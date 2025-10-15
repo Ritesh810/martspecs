@@ -19,6 +19,6 @@
             "@/*": ["src/*"]
         }
     },
-    "include": ["src/**/*", ".ladle/**/*"],
-    "exclude": ["node_modules", "build", "dist"]
+    "include": ["src/**/*"],
+    "exclude": [".ladle/**/*", "node_modules"]
 }
