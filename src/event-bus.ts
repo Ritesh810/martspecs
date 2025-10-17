@@ -1,38 +1,23 @@
 type EventCallback = (...args: any[]) => void;
 
 class EventBus {
-  private events: Map<string, EventCallback[]> = new Map();
+  private events = new Map<string, EventCallback[]>();
 
-  addEvent(eventName: string, callback: EventCallback): void {
-    if (!this.events.has(eventName)) {
-      this.events.set(eventName, []);
-    }
-    this.events.get(eventName)!.push(callback);
+  addEvent(name: string, callback: EventCallback): void {
+    const callbacks = this.events.get(name) || [];
+    callbacks.push(callback);
+    this.events.set(name, callbacks);
   }
 
-  removeEvent(eventName: string, callback: EventCallback): void {
-    const callbacks = this.events.get(eventName);
-    if (callbacks) {
-      const index = callbacks.indexOf(callback);
-      if (index > -1) {
-        callbacks.splice(index, 1);
-      }
-    }
+  removeEvent(name: string, callback: EventCallback): void {
+    const callbacks = this.events.get(name) || [];
+    const index = callbacks.indexOf(callback);
+    if (index > -1) callbacks.splice(index, 1);
   }
 
-  emit(eventName: string, ...args: any[]): void {
-    const callbacks = this.events.get(eventName);
-    if (callbacks) {
-      callbacks.forEach(callback => callback(...args));
-    }
-  }
-
-  removeAllEvents(eventName?: string): void {
-    if (eventName) {
-      this.events.delete(eventName);
-    } else {
-      this.events.clear();
-    }
+  emit(name: string, ...args: any[]): void {
+    const callbacks = this.events.get(name) || [];
+    callbacks.forEach(callback => callback(...args));
   }
 }
 
