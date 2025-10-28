@@ -116,7 +116,7 @@ export class Locale {
         Locale._polyglot.extend(translation);
         Locale._polyglot.locale(code);
         localStorage.setItem("locale", code);
-        eb.send("LANG_CHANGED");
+        eb.emit("LANG_CHANGED");
     }
 
     //-------------------------------------------------------------------------------------------------------
